@@ -7,6 +7,9 @@ package VIEW;
 
 import DAO.PacienteDAO;
 import DTO.PacienteDTO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +22,7 @@ public class frmPacienteVIEW extends javax.swing.JFrame {
      */
     public frmPacienteVIEW() {
         initComponents();
+        pesquisarPacientes();
     }
 
     /**
@@ -30,6 +34,10 @@ public class frmPacienteVIEW extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtNomePaciente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -39,6 +47,41 @@ public class frmPacienteVIEW extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtTelefonePaciente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelaPaciente = new javax.swing.JTable();
+        btnPesquisarPaciente = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        btnCarregarCampos = new javax.swing.JButton();
+        btnLimparCampos = new javax.swing.JButton();
+        btnAlteraPaciente = new javax.swing.JButton();
+        btnExcluirPaciente = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,72 +98,170 @@ public class frmPacienteVIEW extends javax.swing.JFrame {
 
         jLabel4.setText("Telefone");
 
-        jLabel5.setText("CADASTRO DE PACIENTE");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("CADASTRO E PESQUISA DE PACIENTE");
+
+        tabelaPaciente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nome do Paciente", "Data de Nasc", "Telefone"
+            }
+        ));
+        jScrollPane3.setViewportView(tabelaPaciente);
+
+        btnPesquisarPaciente.setText("PESQUISAR");
+        btnPesquisarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarPacienteActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Id");
+
+        txtId.setEditable(false);
+
+        btnCarregarCampos.setText("CARREGAR CAMPOS");
+        btnCarregarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarregarCamposActionPerformed(evt);
+            }
+        });
+
+        btnLimparCampos.setText("LIMPAR");
+        btnLimparCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparCamposActionPerformed(evt);
+            }
+        });
+
+        btnAlteraPaciente.setText("ALTERAR");
+        btnAlteraPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlteraPacienteActionPerformed(evt);
+            }
+        });
+
+        btnExcluirPaciente.setText("EXCLUIR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(btnCadastrarPaciente)
-                                .addComponent(jLabel4)
-                                .addComponent(txtNomePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addComponent(txtDataNascPaciente)
-                                .addComponent(txtTelefonePaciente))
-                            .addComponent(jLabel1)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 31, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel5)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(txtNomePaciente)
+                                            .addComponent(txtDataNascPaciente)
+                                            .addComponent(txtTelefonePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(jLabel6))
+                                        .addGap(217, 217, 217)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnExcluirPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnPesquisarPaciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCarregarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAlteraPaciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnLimparCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDataNascPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTelefonePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(jLabel2))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnExcluirPaciente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCadastrarPaciente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisarPaciente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlteraPaciente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCarregarCampos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimparCampos)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDataNascPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTelefonePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrarPaciente)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarPacienteActionPerformed
-        String nome,dataNascimento, telefonePaciente;
-        nome = txtNomePaciente.getText();
-        dataNascimento = txtDataNascPaciente.getText();
-        telefonePaciente = txtTelefonePaciente.getText();
-        
-        PacienteDTO objpacientedto = new PacienteDTO();
-        objpacientedto.setNomePaciente(nome);
-        objpacientedto.setDataNascimento(dataNascimento);
-        objpacientedto.setTelefonePaciente(telefonePaciente);
-        
-        PacienteDAO objpacientedao = new PacienteDAO();
-        objpacientedao.cadastrarPaciente(objpacientedto);
+        cadastrarPaciente();
+        pesquisarPacientes();
+        limparCampos();
     }//GEN-LAST:event_btnCadastrarPacienteActionPerformed
+
+    private void btnPesquisarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPacienteActionPerformed
+        pesquisarPacientes();
+    }//GEN-LAST:event_btnPesquisarPacienteActionPerformed
+
+    private void btnCarregarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarCamposActionPerformed
+        carregarCamposPacientes();
+    }//GEN-LAST:event_btnCarregarCamposActionPerformed
+
+    private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_btnLimparCamposActionPerformed
+
+    private void btnAlteraPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlteraPacienteActionPerformed
+        alterarPaciente();
+        pesquisarPacientes();
+        limparCampos();
+    }//GEN-LAST:event_btnAlteraPacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,14 +300,104 @@ public class frmPacienteVIEW extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlteraPaciente;
     private javax.swing.JButton btnCadastrarPaciente;
+    private javax.swing.JButton btnCarregarCampos;
+    private javax.swing.JButton btnExcluirPaciente;
+    private javax.swing.JButton btnLimparCampos;
+    private javax.swing.JButton btnPesquisarPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tabelaPaciente;
     private javax.swing.JTextField txtDataNascPaciente;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNomePaciente;
     private javax.swing.JTextField txtTelefonePaciente;
     // End of variables declaration//GEN-END:variables
+
+    private void pesquisarPacientes() {
+        try {
+            PacienteDAO objpacientedao = new PacienteDAO();
+            DefaultTableModel model = (DefaultTableModel) tabelaPaciente.getModel();
+            model.setNumRows(0);
+
+            ArrayList<PacienteDTO> lista = objpacientedao.pesquisarPaciente();
+
+            for (int num = 0; num < lista.size(); num++) {
+                model.addRow(new Object[]{
+                    lista.get(num).getId_Paciente(),
+                    lista.get(num).getNomePaciente(),
+                    lista.get(num).getDataNascimento(),
+                    lista.get(num).getTelefonePaciente()
+                });
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Listar Pacientes VIEW" + erro);
+        }
+    }
+    
+    private void carregarCamposPacientes(){
+        int setar = tabelaPaciente.getSelectedRow();
+        
+        txtId.setText(tabelaPaciente.getModel().getValueAt(setar, 0).toString());
+        txtNomePaciente.setText(tabelaPaciente.getModel().getValueAt(setar, 1).toString());
+        txtDataNascPaciente.setText(tabelaPaciente.getModel().getValueAt(setar, 2).toString());
+        txtTelefonePaciente.setText(tabelaPaciente.getModel().getValueAt(setar, 3).toString());
+    }
+    
+    private void cadastrarPaciente(){
+        String nomePaciente, dataNascPaciente, telefonePaciente;
+        
+        nomePaciente = txtNomePaciente.getText();
+        dataNascPaciente = txtDataNascPaciente.getText();
+        telefonePaciente = txtTelefonePaciente.getText();
+        
+        PacienteDTO objpacientedto = new PacienteDTO();
+        objpacientedto.setNomePaciente(nomePaciente);
+        objpacientedto.setDataNascimento(dataNascPaciente);
+        objpacientedto.setTelefonePaciente(telefonePaciente);
+        
+        PacienteDAO objpacientedao = new PacienteDAO();
+        objpacientedao.cadastrarPaciente(objpacientedto);
+    }
+    
+    private void limparCampos(){
+        txtId.setText("");
+        txtNomePaciente.setText("");
+        txtDataNascPaciente.setText("");
+        txtTelefonePaciente.setText("");
+        txtNomePaciente.requestFocus();
+    }
+    
+    private void alterarPaciente(){
+        int id_Paciente;
+        String nomePaciente, dataNascPaciente, telefonePaciente;
+        
+        id_Paciente = Integer.parseInt(txtId.getText());
+        nomePaciente = txtNomePaciente.getText();
+        dataNascPaciente = txtDataNascPaciente.getText();
+        telefonePaciente = txtTelefonePaciente.getText();
+        
+        PacienteDTO objpacientedto = new PacienteDTO();
+        objpacientedto.setId_Paciente(id_Paciente);
+        objpacientedto.setNomePaciente(nomePaciente);
+        objpacientedto.setDataNascimento(dataNascPaciente);
+        objpacientedto.setTelefonePaciente(telefonePaciente);
+        
+        PacienteDAO objpacientedao = new PacienteDAO();
+        objpacientedao.alterarPaciente(objpacientedto);
+    }
+    
+    private void excluirPaciente(){
+        
+    }
 }
