@@ -107,6 +107,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
 
     private void btn_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_entrarActionPerformed
         Logar();
+//        permissao();
     }//GEN-LAST:event_btn_entrarActionPerformed
 
     /**
@@ -152,7 +153,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nomeUsuario;
     private javax.swing.JPasswordField txt_senhaUsuario;
     // End of variables declaration//GEN-END:variables
-    private void Logar(){
+    private void Logar() {
         try {
             String nome_usuario, senha_usuario;
 
@@ -162,23 +163,64 @@ public class frmLoginVIEW extends javax.swing.JFrame {
             UsuarioDTO objusuariodto = new UsuarioDTO();
             objusuariodto.setNome_usuario(nome_usuario);
             objusuariodto.setSenha_usuario(senha_usuario);
-            
+
             UsuarioDAO objusuariodao = new UsuarioDAO();
             ResultSet rsusuariodao = objusuariodao.autenticacaoUsuario(objusuariodto);
-            
+
             if (rsusuariodao.next()) {
-                //CHAMAR TELA QUE QUERO ABRIR
-                frmPrincipalVIEW objfrmprincipalview = new frmPrincipalVIEW();
-                objfrmprincipalview.setVisible(true);
-                
+                int permissao = rsusuariodao.getInt("permissao");
+                if (permissao == 1) {
+                    frmPacienteVIEW objfrmpacienteview = new frmPacienteVIEW();
+                    objfrmpacienteview.setVisible(true);
+                    dispose();
+                } else {
+                    frmTelaConsultaVIEW objfrmtelaconsultaview = new frmTelaConsultaVIEW();
+                    objfrmtelaconsultaview.setVisible(true);
+                    dispose();
+                }
+            } else {
+
+                //ENVIAR MENSAGEM DIZENDO INCORRETO
+                JOptionPane.showMessageDialog(null, "Usuário ou Senha Inválida!");
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "FRMLOGINVIEW" + erro);
+        }
+    }
+
+    public void permissao() {
+
+        try {
+            String nome_usuario, senha_usuario;
+
+            nome_usuario = txt_nomeUsuario.getText();
+            senha_usuario = txt_senhaUsuario.getText();
+
+            UsuarioDTO objusuariodto = new UsuarioDTO();
+            objusuariodto.setNome_usuario(nome_usuario);
+            objusuariodto.setSenha_usuario(senha_usuario);
+
+            UsuarioDAO objusuariodao = new UsuarioDAO();
+            ResultSet rsusuariodao = objusuariodao.verificarPermissao(objusuariodto);
+            JOptionPane.showMessageDialog(null, objusuariodao);
+            if (rsusuariodao.next()) {
+//                //CHAMAR TELA QUE QUERO ABRIR
+//                frmPacienteVIEW objfrmpacienteview = new frmPacienteVIEW();
+//                objfrmpacienteview.setVisible(true);
+                Logar();
+                dispose();
+            } else if (!rsusuariodao.next()) {
+                frmTelaConsultaVIEW objfrmtelaconsultaview = new frmTelaConsultaVIEW();
+                objfrmtelaconsultaview.setVisible(true);
                 dispose();
             } else {
                 //ENVIAR MENSAGEM DIZENDO INCORRETO
                 JOptionPane.showMessageDialog(null, "Usuário ou Senha Inválida!");
             }
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "FRMLOGINVIEW"+erro);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "FRMLOGINPERMISSAOVIEW" + erro);
         }
+
     }
 
 }

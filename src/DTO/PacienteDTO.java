@@ -14,6 +14,16 @@ public class PacienteDTO {
     private String nomePaciente;
     private String dataNascimento;
     private String telefonePaciente;
+    private String prontuarioPaciente;
+
+    public String getProntuarioPaciente() {
+        return prontuarioPaciente;
+    }
+
+    public void setProntuarioPaciente(String prontuarioPaciente) {
+        this.prontuarioPaciente = prontuarioPaciente;
+    }
+    
 
     public int getId_Paciente() {
         return id_Paciente;

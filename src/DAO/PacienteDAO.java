@@ -57,6 +57,7 @@ public class PacienteDAO {
                 objpacientedto.setNomePaciente(rs.getString("nomepaciente"));
                 objpacientedto.setDataNascimento(rs.getString("datanascimento"));
                 objpacientedto.setTelefonePaciente(rs.getString("telefonepaciente"));
+                objpacientedto.setProntuarioPaciente(rs.getString("prontuarioPaciente"));
 
                 lista.add(objpacientedto);
             }
@@ -67,7 +68,7 @@ public class PacienteDAO {
     }
     
     public void alterarPaciente(PacienteDTO objpacientedto){
-        String sql = "UPDATE paciente SET nomePaciente = ?, dataNascimento = ?, telefonePaciente = ? WHERE id = ?";
+        String sql = "UPDATE paciente SET nomePaciente = ?, dataNascimento = ?, telefonePaciente = ?, prontuarioPaciente = ? WHERE id = ?";
         
         conexao = new ConexaoDAO().conectaBD();
         
@@ -76,13 +77,47 @@ public class PacienteDAO {
             pstm.setString(1, objpacientedto.getNomePaciente());
             pstm.setString(2, objpacientedto.getDataNascimento());
             pstm.setString(3, objpacientedto.getTelefonePaciente());
-            pstm.setInt(4, objpacientedto.getId_Paciente());
+            pstm.setString(4, objpacientedto.getProntuarioPaciente());
+            pstm.setInt(5, objpacientedto.getId_Paciente());
             
             pstm.execute();
             pstm.close();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "FuncionarioDAO Alterar " + sql);
+            JOptionPane.showMessageDialog(null, "PacienteDAO Alterar " + sql);
+        }
+    }
+//    public void alterarProntuarioPaciente(PacienteDTO objpacientedto){
+//        String sql = "UPDATE paciente SET prontuarioPaciente = ? WHERE id = ?";
+//        
+//        conexao = new ConexaoDAO().conectaBD();
+//        
+//        try {
+//            pstm = conexao.prepareStatement(sql);
+//            pstm.setString(1, objpacientedto.getProntuarioPaciente());
+//            pstm.setInt(2, objpacientedto.getId_Paciente());
+//            
+//            pstm.execute();
+//            pstm.close();
+//
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, "FuncionarioDAO Alterar " + sql);
+//        }
+//    }
+    
+    public void excluirPaciente(PacienteDTO objpacientedto){
+        String sql = "DELETE FROM paciente WHERE id = ?";
+        
+        conexao = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = conexao.prepareStatement(sql);
+            pstm.setInt(1, objpacientedto.getId_Paciente());
+            pstm.execute();
+            pstm.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "FuncionarioDAO Excluir " + sql);
         }
     }
 }

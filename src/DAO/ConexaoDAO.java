@@ -16,7 +16,7 @@ public class ConexaoDAO {
     public Connection conectaBD() {
         Connection conexao = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/banco?user=user&password=secret";
+            String url = "jdbc:mysql://prontuario.ctxwl27tz2k6.sa-east-1.rds.amazonaws.com:3306/prontuario?user=admin&password=Secret2022";
             
             conexao = DriverManager.getConnection(url);
         } catch (SQLException e) {

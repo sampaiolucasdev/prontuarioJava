@@ -13,7 +13,16 @@ public class UsuarioDTO {
     
     private int id_usuario;
     private String nome_usuario, senha_usuario;
+    private int permissao;
 
+    public int getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(int permissao) {
+        this.permissao = permissao;
+    }
+    
     public int getId_usuario() {
         return id_usuario;
     }

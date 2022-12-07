@@ -7,6 +7,9 @@ package VIEW;
 
 import DAO.MedicoDAO;
 import DTO.MedicoDTO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +22,7 @@ public class frmMedicoVIEW extends javax.swing.JFrame {
      */
     public frmMedicoVIEW() {
         initComponents();
+        pesquisarMedico();
     }
 
     /**
@@ -30,6 +34,10 @@ public class frmMedicoVIEW extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtNomeMedico = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -39,6 +47,43 @@ public class frmMedicoVIEW extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtCRM = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelaMedico = new javax.swing.JTable();
+        btnPesquisarMedico = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        btnCarregarCampos = new javax.swing.JButton();
+        btnLimparCampos = new javax.swing.JButton();
+        btnAlteraMedico = new javax.swing.JButton();
+        btnExcluirMedico = new javax.swing.JButton();
+        btnIrParaCadastroPaciente = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,71 +100,213 @@ public class frmMedicoVIEW extends javax.swing.JFrame {
 
         jLabel4.setText("CRM");
 
-        jLabel5.setText("CADASTRO DE MÉDICO");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("CADASTRO E PESQUISA DE MÉDICO");
+
+        tabelaMedico.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nome do Medico", "Especialidade", "CRM"
+            }
+        ));
+        jScrollPane3.setViewportView(tabelaMedico);
+
+        btnPesquisarMedico.setText("PESQUISAR");
+        btnPesquisarMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarMedicoActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Id");
+
+        txtId.setEditable(false);
+
+        btnCarregarCampos.setText("CARREGAR CAMPOS");
+        btnCarregarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarregarCamposActionPerformed(evt);
+            }
+        });
+
+        btnLimparCampos.setText("LIMPAR");
+        btnLimparCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparCamposActionPerformed(evt);
+            }
+        });
+
+        btnAlteraMedico.setText("ALTERAR");
+        btnAlteraMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlteraMedicoActionPerformed(evt);
+            }
+        });
+
+        btnExcluirMedico.setText("EXCLUIR");
+        btnExcluirMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirMedicoActionPerformed(evt);
+            }
+        });
+
+        btnIrParaCadastroPaciente.setText("CADASTRO PACIENTE");
+        btnIrParaCadastroPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIrParaCadastroPacienteActionPerformed(evt);
+            }
+        });
+
+        btnSair.setText("SAIR");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3)
-                        .addComponent(btnCadastrarMedico)
-                        .addComponent(jLabel4)
-                        .addComponent(txtNomeMedico, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtEspecialidade)
-                        .addComponent(txtCRM))
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 31, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtNomeMedico)
+                                    .addComponent(txtEspecialidade)
+                                    .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel6))
+                                .addGap(217, 217, 217)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnExcluirMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPesquisarMedico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCadastrarMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCarregarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAlteraMedico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimparCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnIrParaCadastroPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(91, 91, 91)
                 .addComponent(jLabel5)
-                .addGap(86, 86, 86))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSair)
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(jLabel2))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnIrParaCadastroPaciente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluirMedico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCadastrarMedico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisarMedico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlteraMedico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCarregarCampos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimparCampos)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrarMedico)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(btnSair)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarMedicoActionPerformed
-        String nomeMedico, especialidade, crm;
-        nomeMedico = txtNomeMedico.getText();
-        especialidade = txtEspecialidade.getText();
-        crm = txtCRM.getText();
-
-        MedicoDTO objmedicodto = new MedicoDTO();
-        objmedicodto.setNomeMedico(nomeMedico);
-        objmedicodto.setEspecialidade(especialidade);
-        objmedicodto.setCrm(crm);
-
-        MedicoDAO objmedicodao = new MedicoDAO();
-        objmedicodao.cadastrarMedico(objmedicodto);
+        cadastrarMedico();
+        pesquisarMedico();
+        limparCampos();
     }//GEN-LAST:event_btnCadastrarMedicoActionPerformed
+
+    private void btnPesquisarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarMedicoActionPerformed
+        pesquisarMedico();
+    }//GEN-LAST:event_btnPesquisarMedicoActionPerformed
+
+    private void btnCarregarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarCamposActionPerformed
+        carregarCamposMedicos();
+    }//GEN-LAST:event_btnCarregarCamposActionPerformed
+
+    private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_btnLimparCamposActionPerformed
+
+    private void btnAlteraMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlteraMedicoActionPerformed
+        alterarMedico();
+        pesquisarMedico();
+        limparCampos();
+    }//GEN-LAST:event_btnAlteraMedicoActionPerformed
+
+    private void btnExcluirMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirMedicoActionPerformed
+        excluirMedico();
+        pesquisarMedico();
+        limparCampos();
+    }//GEN-LAST:event_btnExcluirMedicoActionPerformed
+
+    private void btnIrParaCadastroPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrParaCadastroPacienteActionPerformed
+        mudarParaPaciente();
+    }//GEN-LAST:event_btnIrParaCadastroPacienteActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        logout();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,14 +347,127 @@ public class frmMedicoVIEW extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlteraMedico;
     private javax.swing.JButton btnCadastrarMedico;
+    private javax.swing.JButton btnCarregarCampos;
+    private javax.swing.JButton btnExcluirMedico;
+    private javax.swing.JButton btnIrParaCadastroPaciente;
+    private javax.swing.JButton btnLimparCampos;
+    private javax.swing.JButton btnPesquisarMedico;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tabelaMedico;
     private javax.swing.JTextField txtCRM;
     private javax.swing.JTextField txtEspecialidade;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNomeMedico;
     // End of variables declaration//GEN-END:variables
+
+    private void pesquisarMedico() {
+        try {
+            MedicoDAO objmedicodao = new MedicoDAO();
+            DefaultTableModel model = (DefaultTableModel) tabelaMedico.getModel();
+            model.setNumRows(0);
+
+            ArrayList<MedicoDTO> lista = objmedicodao.pesquisarMedico();
+
+            for (int num = 0; num < lista.size(); num++) {
+                model.addRow(new Object[]{
+                    lista.get(num).getId_Medico(),
+                    lista.get(num).getNomeMedico(),
+                    lista.get(num).getEspecialidade(),
+                    lista.get(num).getCrm()
+                });
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Listar Medicos VIEW" + erro);
+        }
+    }
+    
+    private void carregarCamposMedicos(){
+        int setar = tabelaMedico.getSelectedRow();
+        
+        txtId.setText(tabelaMedico.getModel().getValueAt(setar, 0).toString());
+        txtNomeMedico.setText(tabelaMedico.getModel().getValueAt(setar, 1).toString());
+        txtEspecialidade.setText(tabelaMedico.getModel().getValueAt(setar, 2).toString());
+        txtCRM.setText(tabelaMedico.getModel().getValueAt(setar, 3).toString());
+    }
+    
+    private void cadastrarMedico(){
+        String nomeMedico, especialidade, crm;
+        
+        nomeMedico = txtNomeMedico.getText();
+        especialidade = txtEspecialidade.getText();
+        crm = txtCRM.getText();
+        
+        MedicoDTO objmedicodto = new MedicoDTO();
+        objmedicodto.setNomeMedico(nomeMedico);
+        objmedicodto.setEspecialidade(especialidade);
+        objmedicodto.setCrm(crm);
+        
+        MedicoDAO objmedicodao = new MedicoDAO();
+        objmedicodao.cadastrarMedico(objmedicodto);
+    }
+    
+    private void limparCampos(){
+        txtId.setText("");
+        txtNomeMedico.setText("");
+        txtEspecialidade.setText("");
+        txtCRM.setText("");
+        txtNomeMedico.requestFocus();
+    }
+    
+    private void alterarMedico(){
+        int id_Medico;
+        String nomeMedico, especialidade, crm;
+        
+        id_Medico = Integer.parseInt(txtId.getText());
+        nomeMedico = txtNomeMedico.getText();
+        especialidade = txtEspecialidade.getText();
+        crm = txtCRM.getText();
+        
+        MedicoDTO objmedicodto = new MedicoDTO();
+        objmedicodto.setId_Medico(id_Medico);
+        objmedicodto.setNomeMedico(nomeMedico);
+        objmedicodto.setEspecialidade(especialidade);
+        objmedicodto.setCrm(crm);
+        
+        MedicoDAO objmedicodao = new MedicoDAO();
+        objmedicodao.alterarMedico(objmedicodto);
+    }
+    
+    private void excluirMedico(){
+        int id_Medico;
+        
+        id_Medico = Integer.parseInt(txtId.getText());
+        
+        MedicoDTO objmedicodto = new MedicoDTO();
+        objmedicodto.setId_Medico(id_Medico);
+        
+        MedicoDAO objmedicodao = new MedicoDAO();
+        objmedicodao.excluirMedico(objmedicodto);
+    }
+    
+    private void mudarParaPaciente(){
+        frmPacienteVIEW mudarparapaciente = new frmPacienteVIEW();
+        this.dispose();
+        mudarparapaciente.setVisible(true);
+        
+    }
+    
+    private void logout(){
+        frmLoginVIEW logout = new frmLoginVIEW();
+        this.dispose();
+        logout.setVisible(true);
+    }
 }
